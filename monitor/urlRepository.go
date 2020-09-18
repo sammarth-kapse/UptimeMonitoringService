@@ -9,10 +9,24 @@ func insertIntoURLCollection(id string, data *URLData) {
 
 func getURLDataFromCollection(id string) (*URLData, bool) {
 
-	downloadItem, ok := urlCollection[id]
+	downloadItem, isPresent := urlCollection[id]
 
-	if ok {
-		return downloadItem, ok
+	if isPresent {
+		return downloadItem, isPresent
 	}
-	return nil, ok
+	return nil, isPresent
+}
+
+func removeURLFromCollection(id string) bool {
+
+	if isURLPresentInCollection(id) {
+		delete(urlCollection, id)
+		return true
+	}
+	return false
+}
+
+func isURLPresentInCollection(id string) bool {
+	_, check := urlCollection[id]
+	return check
 }

@@ -10,9 +10,16 @@ func UpdateURL(id string, request URLPatchRequest) (*URLData, bool) {
 	if !isPresent {
 		return nil, false
 	}
+
+	stopMonitoring(urlInfo)
+
 	urlInfo.Frequency = request.Frequency
 	urlInfo.Status = request.Status
 	urlInfo.FailureCount = 0
+
+	if urlInfo.Status == ACTIVE {
+		go monitor(urlInfo)
+	}
 	return urlInfo, true
 }
 
@@ -21,7 +28,7 @@ func ActivateURL(id string) (string, bool, bool) {
 	if !isPresent {
 		return "", false, false
 	} else if urlInfo.Status == ACTIVE {
-		return "", true, true
+		return urlInfo.URL, true, true
 	}
 	urlInfo.Status = ACTIVE
 	urlInfo.FailureCount = 0
@@ -34,8 +41,18 @@ func DeactivateURL(id string) (string, bool, bool) {
 	if !isPresent {
 		return "", false, false
 	} else if urlInfo.Status == INACTIVE {
-		return "", true, true
+		return urlInfo.URL, true, true
 	}
-	urlInfo.Status = INACTIVE
+	stopMonitoring(urlInfo)
 	return urlInfo.URL, true, false
+}
+
+func DeleteURLData(id string) bool {
+	urlInfo, isPresent := getURLDataFromCollection(id)
+	if !isPresent {
+		return false
+	}
+	stopMonitoring(urlInfo)
+	removeURLFromCollection(id)
+	return true
 }

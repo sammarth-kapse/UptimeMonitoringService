@@ -46,8 +46,9 @@ func getUrlStatus(ctx *gin.Context) {
 			"failure_count":     response.FailureCount,
 		})
 	} else {
-		displayMessage := "Invalid ID"
-		ctx.Data(http.StatusConflict, "application/json; charset=utf-8", []byte(displayMessage))
+		ctx.JSON(http.StatusNoContent, gin.H{
+			"id": "invalid",
+		})
 	}
 
 }
@@ -73,18 +74,26 @@ func patchURL(ctx *gin.Context) {
 			"failure_count":     response.FailureCount,
 		})
 	} else {
-		displayMessage := "Invalid ID"
-		ctx.Data(http.StatusConflict, "application/json; charset=utf-8", []byte(displayMessage))
+		ctx.JSON(http.StatusNoContent, gin.H{
+			"id": "invalid",
+		})
 	}
 }
 
 func deleteURL(ctx *gin.Context) {
 	id := ctx.Param("id")
 
-	ctx.JSON(http.StatusOK, gin.H{
-		"id":      id,
-		"deleted": true,
-	})
+	isPresent := monitor.DeleteURLData(id)
+	if isPresent {
+		ctx.JSON(http.StatusOK, gin.H{
+			"id":      id,
+			"deleted": true,
+		})
+	} else {
+		ctx.JSON(http.StatusNoContent, gin.H{
+			"id": "invalid",
+		})
+	}
 }
 
 func activateURL(ctx *gin.Context) {
@@ -92,14 +101,22 @@ func activateURL(ctx *gin.Context) {
 	id := ctx.Param("id")
 
 	if urlAddress, isPresent, isAlreadyActivated := monitor.ActivateURL(id); isAlreadyActivated {
-		displayMessage := "URL is already Activated"
-		ctx.Data(http.StatusConflict, "application/json; charset=utf-8", []byte(displayMessage))
+		ctx.JSON(http.StatusConflict, gin.H{
+			"id":      id,
+			"url":     urlAddress,
+			"message": "Already Activated",
+		})
 	} else if isPresent {
-		displayMessage := "Activated URL: " + urlAddress
-		ctx.Data(http.StatusOK, "application/json; charset=utf-8", []byte(displayMessage))
+		ctx.JSON(http.StatusOK, gin.H{
+			"id":      id,
+			"url":     urlAddress,
+			"message": "Activated",
+		})
+
 	} else {
-		displayMessage := "Invalid ID"
-		ctx.Data(http.StatusConflict, "application/json; charset=utf-8", []byte(displayMessage))
+		ctx.JSON(http.StatusNoContent, gin.H{
+			"id": "invalid",
+		})
 	}
 
 }
@@ -108,13 +125,20 @@ func deactivateURL(ctx *gin.Context) {
 	id := ctx.Param("id")
 
 	if urlAddress, isPresent, isAlreadyDeactivated := monitor.DeactivateURL(id); isAlreadyDeactivated {
-		displayMessage := "URL: " + urlAddress + " is already Deactivated"
-		ctx.Data(http.StatusConflict, "application/json; charset=utf-8", []byte(displayMessage))
+		ctx.JSON(http.StatusConflict, gin.H{
+			"id":      id,
+			"url":     urlAddress,
+			"message": "Already Deactivated",
+		})
 	} else if isPresent {
-		displayMessage := "Deactivated URL: " + urlAddress
-		ctx.Data(http.StatusOK, "application/json; charset=utf-8", []byte(displayMessage))
+		ctx.JSON(http.StatusOK, gin.H{
+			"id":      id,
+			"url":     urlAddress,
+			"message": "Deactivated",
+		})
 	} else {
-		displayMessage := "Invalid ID"
-		ctx.Data(http.StatusConflict, "application/json; charset=utf-8", []byte(displayMessage))
+		ctx.JSON(http.StatusNoContent, gin.H{
+			"id": "invalid",
+		})
 	}
 }

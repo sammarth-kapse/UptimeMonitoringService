@@ -1,11 +1,8 @@
 package monitor
 
 import (
-	"fmt"
 	"github.com/google/uuid"
-	"net/http"
 	"regexp"
-	"time"
 )
 
 // 'url' is used as package ('net/url') not a variable. urlAddress is the variable used instead.
@@ -31,30 +28,6 @@ func AddService(req URLPostRequest) (*URLData, error) {
 	go monitor(newURLData)
 
 	return newURLData, nil
-}
-
-// urlInfo would be used as a variable of type UrlData
-func monitor(urlInfo *URLData) {
-
-	for urlInfo.FailureCount < urlInfo.FailureThreshold && urlInfo.Status == ACTIVE {
-
-		resp, err := http.Get(urlInfo.URL)
-		if err != nil {
-			fmt.Println(err)
-		}
-		defer resp.Body.Close()
-
-		if resp.StatusCode != http.StatusOK {
-			urlInfo.FailureCount++
-		}
-
-		fmt.Println("Checked Url : ", urlInfo.URL, " is: ", urlInfo.Status, " code: ", resp.StatusCode)
-		if urlInfo.FailureCount < urlInfo.FailureThreshold && urlInfo.Status == ACTIVE {
-			time.Sleep(time.Duration(urlInfo.Frequency) * time.Second)
-		}
-	}
-	urlInfo.Status = INACTIVE
-	fmt.Println("Url: ", urlInfo.URL, " is now: ", urlInfo.Status)
 }
 
 func checkForProtocolInURL(urlAddress string) string {

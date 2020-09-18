@@ -19,13 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Added Gin router functionality to route several URLs">
-      <change afterPath="$PROJECT_DIR$/.idea/UptimeMonitoringService.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Monitor/monitor.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/routes.go" afterDir="false" />
+    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Added functionality in Monitor package and route handlers.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/OperationsOnService.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/OperationsOnService.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/addService.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/addService.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/urlRepository.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/urlRepository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/utility.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/utility.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routeHandlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/routeHandlers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,37 +106,38 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Gin router functionality to route several URLs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Gin router functionality to route several URLs" />
+    <MESSAGE value="Added functionality in Monitor package and route handlers." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality in Monitor package and route handlers." />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600344557386">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1600344557386" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1600344358323">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1600456603808">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600344358323" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600456603808" />
     <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1600289057976" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1600344358322">
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1600456603806">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600344358322" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600456603806" />
     <state width="1398" height="245" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1600289057975" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1600344358322">
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1600456603805">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600344358322" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600456603805" />
     <state width="1398" height="245" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1600289057974" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1600344358323">
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1600456603807">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600344358323" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600456603807" />
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1600289057975" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600286314891">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600407395717">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600286314891" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600407395717" />
     <state x="385" y="196" key="search.everywhere.popup" timestamp="1600281491899">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
