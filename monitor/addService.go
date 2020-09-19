@@ -1,6 +1,7 @@
 package monitor
 
 import (
+	"UptimeMonitoringService/database"
 	"github.com/google/uuid"
 	"regexp"
 )
@@ -8,24 +9,25 @@ import (
 // 'url' is used as package ('net/url') not a variable. urlAddress is the variable used instead.
 // 'URL' is a field of struct URLData
 
-func AddService(req URLPostRequest) (*URLData, error) {
+func AddService(req URLPostRequest) (database.UrlData, error) {
 
 	req.URL = checkForProtocolInURL(req.URL)
 
 	id := uuid.New().String()
 
-	newURLData := new(URLData)
-	newURLData.ID = id
-	newURLData.URL = req.URL
-	newURLData.CrawlTimeout = req.CrawlTimeout
-	newURLData.Frequency = req.Frequency
-	newURLData.FailureThreshold = req.FailureThreshold
-	newURLData.Status = ACTIVE
-	newURLData.FailureCount = 0
+	newURLData := database.UrlData{
+		ID:               id,
+		URL:              req.URL,
+		CrawlTimeout:     req.CrawlTimeout,
+		Frequency:        req.Frequency,
+		FailureThreshold: req.FailureThreshold,
+		Status:           ACTIVE,
+		FailureCount:     0,
+	}
 
-	insertIntoURLCollection(id, newURLData)
+	database.AddURLDataInDatabase(newURLData)
 
-	go monitor(newURLData)
+	go monitor(newURLData.ID, newURLData.URL, newURLData.Frequency, newURLData.CrawlTimeout)
 
 	return newURLData, nil
 }

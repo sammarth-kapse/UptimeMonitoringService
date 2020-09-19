@@ -16,19 +16,22 @@ func postURL(ctx *gin.Context) {
 		log.Fatal(err)
 		return
 	}
+
 	urlInfo, err := monitor.AddService(postRequest)
+
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{})
+	} else {
+		ctx.JSON(http.StatusOK, gin.H{
+			"id":                urlInfo.ID,
+			"url":               urlInfo.URL,
+			"crawl_timeout":     urlInfo.CrawlTimeout,
+			"frequency":         urlInfo.Frequency,
+			"failure_threshold": urlInfo.FailureThreshold,
+			"status":            urlInfo.Status,
+			"failure_count":     urlInfo.FailureCount,
+		})
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"id":                urlInfo.ID,
-		"url":               urlInfo.URL,
-		"crawl_timeout":     urlInfo.CrawlTimeout,
-		"frequency":         urlInfo.Frequency,
-		"failure_threshold": urlInfo.FailureThreshold,
-		"status":            urlInfo.Status,
-		"failure_count":     urlInfo.FailureCount,
-	})
 }
 
 func getUrlStatus(ctx *gin.Context) {
@@ -46,7 +49,7 @@ func getUrlStatus(ctx *gin.Context) {
 			"failure_count":     response.FailureCount,
 		})
 	} else {
-		ctx.JSON(http.StatusNoContent, gin.H{
+		ctx.JSON(http.StatusConflict, gin.H{
 			"id": "invalid",
 		})
 	}
@@ -74,7 +77,7 @@ func patchURL(ctx *gin.Context) {
 			"failure_count":     response.FailureCount,
 		})
 	} else {
-		ctx.JSON(http.StatusNoContent, gin.H{
+		ctx.JSON(http.StatusConflict, gin.H{
 			"id": "invalid",
 		})
 	}
@@ -90,7 +93,7 @@ func deleteURL(ctx *gin.Context) {
 			"deleted": true,
 		})
 	} else {
-		ctx.JSON(http.StatusNoContent, gin.H{
+		ctx.JSON(http.StatusConflict, gin.H{
 			"id": "invalid",
 		})
 	}
@@ -114,7 +117,7 @@ func activateURL(ctx *gin.Context) {
 		})
 
 	} else {
-		ctx.JSON(http.StatusNoContent, gin.H{
+		ctx.JSON(http.StatusConflict, gin.H{
 			"id": "invalid",
 		})
 	}
@@ -137,7 +140,7 @@ func deactivateURL(ctx *gin.Context) {
 			"message": "Deactivated",
 		})
 	} else {
-		ctx.JSON(http.StatusNoContent, gin.H{
+		ctx.JSON(http.StatusConflict, gin.H{
 			"id": "invalid",
 		})
 	}
