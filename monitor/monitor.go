@@ -23,6 +23,7 @@ type URLPatchRequest struct {
 	Status    string `json:"status"`
 }
 
+// Monitors a URL till it's status is 'active'
 func monitor(id, url string, frequency, crawlTimeout int) {
 
 	isFirstCheck := true
@@ -43,6 +44,7 @@ func stopMonitoring(id string) {
 	time.Sleep(10 * time.Second)
 }
 
+// Makes an HTTP GET request on the url with the given set of parameters.
 func checkURL(id, url string, crawlTimeout int) {
 
 	if !database.CheckIfURLStatusISActive(id) {
@@ -55,12 +57,12 @@ func checkURL(id, url string, crawlTimeout int) {
 	// Use the clients GET method to create and execute the request
 	resp, err := client.Get(url, nil)
 	if err != nil {
-		database.IncreaseFailureCount(id)
+		database.IncreaseFailureCount(id) // Request didn't complete within crawl_timeout.
 		return
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		database.IncreaseFailureCount(id)
+		database.IncreaseFailureCount(id) // Unexpected status-code in response.
 	}
 
 	fmt.Println("Checked Url : ", url, " code: ", resp.StatusCode, "   time: ", time.Now())

@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// Adds the request URL and corresponding data to the system.
 func postURL(ctx *gin.Context) {
 	var postRequest monitor.URLPostRequest
 
@@ -34,7 +35,7 @@ func postURL(ctx *gin.Context) {
 	}
 }
 
-func getUrlStatus(ctx *gin.Context) {
+func getUrlData(ctx *gin.Context) {
 
 	id := ctx.Param("id")
 
@@ -56,6 +57,7 @@ func getUrlStatus(ctx *gin.Context) {
 
 }
 
+// Updates the frequency/ status for a given request.
 func patchURL(ctx *gin.Context) {
 
 	var patchRequest monitor.URLPatchRequest
@@ -83,6 +85,7 @@ func patchURL(ctx *gin.Context) {
 	}
 }
 
+// Removes the URL Data from the system and stops monitoring.
 func deleteURL(ctx *gin.Context) {
 	id := ctx.Param("id")
 

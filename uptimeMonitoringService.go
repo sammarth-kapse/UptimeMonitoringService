@@ -9,7 +9,7 @@ func main() {
 
 	router := gin.Default()
 
-	// Func in routes.go
+	// Function in routes.go
 	routes(router)
 
 	err := router.Run(":8081")

@@ -6,9 +6,7 @@ import (
 	"regexp"
 )
 
-// 'url' is used as package ('net/url') not a variable. urlAddress is the variable used instead.
-// 'URL' is a field of struct URLData
-
+// Adds the URL data into the database and starts monitoring.
 func AddService(req URLPostRequest) (database.UrlData, error) {
 
 	req.URL = checkForProtocolInURL(req.URL)

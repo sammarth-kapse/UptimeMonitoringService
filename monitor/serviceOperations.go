@@ -8,6 +8,7 @@ func GetURLDataByID(id string) (database.UrlData, bool) {
 	return database.GetURLDataByID(id)
 }
 
+// Updates frequency/ status for corresponding request.
 func UpdateURL(id string, request URLPatchRequest) (database.UrlData, bool) {
 
 	urlInfo, isPresent := GetURLDataByID(id)

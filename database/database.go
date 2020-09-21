@@ -8,6 +8,8 @@ import (
 
 const username = "sammarth"
 const password = "mysql"
+const databaseName = "gorm_test_db"
+const protocol = "@tcp(127.0.0.1:3306)/"
 const INACTIVE = "inactive"
 const ACTIVE = "active"
 
@@ -25,7 +27,7 @@ var db *gorm.DB
 
 func init() {
 
-	dsn := username + ":" + password + "@tcp(127.0.0.1:3306)/gorm_test_db?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := username + ":" + password + protocol + databaseName + "?charset=utf8mb4&parseTime=True&loc=Local"
 
 	var err error
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
@@ -43,14 +45,6 @@ func (urlInfo *UrlData) saveIntoDatabase() {
 func (urlInfo *UrlData) getURLInfoFromDatabase(id string) {
 	urlInfo.ID = id
 	db.First(&urlInfo)
-}
-
-func getURLInfoInternal(id string) *UrlData {
-	urlInfo := UrlData{
-		ID: id,
-	}
-	db.First(&urlInfo)
-	return &urlInfo
 }
 
 // Utility Functions:
