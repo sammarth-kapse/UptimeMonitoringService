@@ -24,46 +24,46 @@ type URLPatchRequest struct {
 }
 
 // Monitors a URL till it's status is 'active'
-func monitor(id, url string, frequency, crawlTimeout int) {
+func monitor(urlInfo *database.UrlData) {
 
 	isFirstCheck := true
 
-	for database.CheckIfURLStatusISActive(id) {
+	for urlInfo.CheckIfURLStatusISActive() {
 		if !isFirstCheck {
-			ticker := time.NewTimer(time.Duration(frequency) * time.Second)
+			ticker := time.NewTimer(time.Duration(urlInfo.Frequency) * time.Second)
 			<-ticker.C
 		}
-		go checkURL(id, url, crawlTimeout)
+		go checkURL(urlInfo)
 		isFirstCheck = false
 	}
 }
 
-func stopMonitoring(id string) {
+func stopMonitoring(urlInfo *database.UrlData) {
 
-	database.SetUrlAsInactive(id)
+	urlInfo.SetUrlAsInactive()
 	time.Sleep(10 * time.Second)
 }
 
 // Makes an HTTP GET request on the url with the given set of parameters.
-func checkURL(id, url string, crawlTimeout int) {
+func checkURL(urlInfo *database.UrlData) {
 
-	if !database.CheckIfURLStatusISActive(id) {
+	if !urlInfo.CheckIfURLStatusISActive() {
 		return
 	}
 
-	timeout := time.Duration(crawlTimeout) * time.Second
+	timeout := time.Duration(urlInfo.CrawlTimeout) * time.Second
 	client := httpclient.NewClient(httpclient.WithHTTPTimeout(timeout))
 
 	// Use the clients GET method to create and execute the request
-	resp, err := client.Get(url, nil)
+	resp, err := client.Get(urlInfo.URL, nil)
 	if err != nil {
-		database.IncreaseFailureCount(id) // Request didn't complete within crawl_timeout.
+		urlInfo.IncreaseFailureCount() // Request didn't complete within crawl_timeout.
 		return
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		database.IncreaseFailureCount(id) // Unexpected status-code in response.
+		urlInfo.IncreaseFailureCount() // Unexpected status-code in response.
 	}
 
-	fmt.Println("Checked Url : ", url, " code: ", resp.StatusCode, "   time: ", time.Now())
+	fmt.Println("Checked Url : ", urlInfo.URL, " code: ", resp.StatusCode, "   time: ", time.Now())
 }

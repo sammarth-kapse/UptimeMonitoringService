@@ -2,17 +2,19 @@ package database
 
 func GetURLDataByID(id string) (UrlData, bool) {
 
-	var urlInfo UrlData
-	urlInfo.getURLInfoFromDatabase(id)
+	//var urlInfo UrlData
+	urlInfo := UrlData{
+		ID: id,
+	}
+	db.First(&urlInfo)
 	if checkIfURLEmpty(urlInfo) { // when url == empty id is invalid
 		return urlInfo, false
 	}
 	return urlInfo, true
 }
 
-func CheckIfURLStatusISActive(id string) bool {
+func (urlInfo *UrlData) CheckIfURLStatusISActive() bool {
 
-	var urlInfo UrlData
-	urlInfo.getURLInfoFromDatabase(id)
+	urlInfo.getURLInfoFromDatabase()
 	return urlInfo.Status == ACTIVE
 }

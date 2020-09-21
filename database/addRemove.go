@@ -1,12 +1,9 @@
 package database
 
-func AddURLDataInDatabase(urlInfo UrlData) {
+func (urlInfo *UrlData) AddURLDataInDatabase() {
 	db.Create(&urlInfo)
 }
 
-func RemoveURLDataFromDatabase(id string) {
-	urlInfo := UrlData{
-		ID: id,
-	}
+func (urlInfo *UrlData) RemoveURLDataFromDatabase() {
 	db.Delete(&urlInfo)
 }

@@ -16,17 +16,16 @@ func UpdateURL(id string, request URLPatchRequest) (database.UrlData, bool) {
 		return database.UrlData{}, false
 	}
 
-	if database.CheckIfURLStatusISActive(id) {
-		stopMonitoring(id)
+	if urlInfo.CheckIfURLStatusISActive() {
+		stopMonitoring(&urlInfo)
 	}
 
-	database.UpdateFrequency(id, request.Frequency)
-	database.UpdateStatus(id, request.Status)
-	database.ResetFailureCount(id)
+	urlInfo.UpdateFrequency(request.Frequency)
+	urlInfo.UpdateStatus(request.Status)
+	urlInfo.ResetFailureCount()
 
-	urlInfo, _ = GetURLDataByID(id)
 	if urlInfo.Status == ACTIVE {
-		go monitor(urlInfo.ID, urlInfo.URL, urlInfo.Frequency, urlInfo.CrawlTimeout)
+		go monitor(&urlInfo)
 	}
 	return urlInfo, true
 }
@@ -41,9 +40,9 @@ func ActivateURL(id string) (string, bool, bool) {
 		return urlInfo.URL, true, true
 	}
 
-	database.UpdateStatus(id, ACTIVE)
-	database.ResetFailureCount(id)
-	go monitor(urlInfo.ID, urlInfo.URL, urlInfo.Frequency, urlInfo.CrawlTimeout)
+	urlInfo.UpdateStatus(ACTIVE)
+	urlInfo.ResetFailureCount()
+	go monitor(&urlInfo)
 
 	return urlInfo.URL, true, false
 }
@@ -58,21 +57,23 @@ func DeactivateURL(id string) (string, bool, bool) {
 		return urlInfo.URL, true, true
 	}
 
-	stopMonitoring(id)
+	stopMonitoring(&urlInfo)
 
 	return urlInfo.URL, true, false
 }
 
 func DeleteURLData(id string) bool {
 
-	_, isPresent := GetURLDataByID(id)
+	urlInfo, isPresent := GetURLDataByID(id)
 
 	if !isPresent {
 		return false
 	}
 
-	stopMonitoring(id)
-	database.RemoveURLDataFromDatabase(id)
+	if urlInfo.CheckIfURLStatusISActive() {
+		stopMonitoring(&urlInfo)
+	}
 
+	urlInfo.RemoveURLDataFromDatabase()
 	return true
 }

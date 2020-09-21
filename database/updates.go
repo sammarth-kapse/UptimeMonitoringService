@@ -1,9 +1,8 @@
 package database
 
-func IncreaseFailureCount(id string) {
+func (urlInfo *UrlData) IncreaseFailureCount() {
 
-	var urlInfo UrlData
-	urlInfo.getURLInfoFromDatabase(id)
+	urlInfo.getURLInfoFromDatabase()
 
 	urlInfo.FailureCount++
 	if urlInfo.FailureCount == urlInfo.FailureThreshold {
@@ -12,33 +11,30 @@ func IncreaseFailureCount(id string) {
 	urlInfo.saveIntoDatabase()
 }
 
-func SetUrlAsInactive(id string) {
-	var urlInfo UrlData
-	urlInfo.getURLInfoFromDatabase(id)
+func (urlInfo *UrlData) SetUrlAsInactive() {
+
+	urlInfo.getURLInfoFromDatabase()
 	urlInfo.Status = INACTIVE
 	urlInfo.saveIntoDatabase()
 }
 
-func UpdateFrequency(id string, newFrequency int) {
+func (urlInfo *UrlData) UpdateFrequency(newFrequency int) {
 
-	var urlInfo UrlData
-	urlInfo.getURLInfoFromDatabase(id)
+	urlInfo.getURLInfoFromDatabase()
 	urlInfo.Frequency = newFrequency
 	urlInfo.saveIntoDatabase()
 }
 
-func UpdateStatus(id string, newStatus string) {
+func (urlInfo *UrlData) UpdateStatus(newStatus string) {
 
-	var urlInfo UrlData
-	urlInfo.getURLInfoFromDatabase(id)
+	urlInfo.getURLInfoFromDatabase()
 	urlInfo.Status = newStatus
 	urlInfo.saveIntoDatabase()
 }
 
-func ResetFailureCount(id string) {
+func (urlInfo *UrlData) ResetFailureCount() {
 
-	var urlInfo UrlData
-	urlInfo.getURLInfoFromDatabase(id)
+	urlInfo.getURLInfoFromDatabase()
 	urlInfo.FailureCount = 0
 	urlInfo.saveIntoDatabase()
 }

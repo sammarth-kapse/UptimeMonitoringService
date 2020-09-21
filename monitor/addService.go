@@ -13,7 +13,7 @@ func AddService(req URLPostRequest) (database.UrlData, error) {
 
 	id := uuid.New().String()
 
-	newURLData := database.UrlData{
+	urlInfo := database.UrlData{
 		ID:               id,
 		URL:              req.URL,
 		CrawlTimeout:     req.CrawlTimeout,
@@ -23,11 +23,11 @@ func AddService(req URLPostRequest) (database.UrlData, error) {
 		FailureCount:     0,
 	}
 
-	database.AddURLDataInDatabase(newURLData)
+	urlInfo.AddURLDataInDatabase()
 
-	go monitor(newURLData.ID, newURLData.URL, newURLData.Frequency, newURLData.CrawlTimeout)
+	go monitor(&urlInfo)
 
-	return newURLData, nil
+	return urlInfo, nil
 }
 
 func checkForProtocolInURL(urlAddress string) string {

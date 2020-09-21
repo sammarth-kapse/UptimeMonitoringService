@@ -38,13 +38,12 @@ func init() {
 
 }
 
-func (urlInfo *UrlData) saveIntoDatabase() {
-	db.Save(&urlInfo)
+func (urlInfo *UrlData) getURLInfoFromDatabase() {
+	db.First(&urlInfo)
 }
 
-func (urlInfo *UrlData) getURLInfoFromDatabase(id string) {
-	urlInfo.ID = id
-	db.First(&urlInfo)
+func (urlInfo *UrlData) saveIntoDatabase() {
+	db.Save(&urlInfo)
 }
 
 // Utility Functions:

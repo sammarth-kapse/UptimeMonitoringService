@@ -19,15 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Implemented Object Oriented approach in Database package.">
+    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Improvised Code structure. Added several comments.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/addRemove.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/addRemove.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/queries.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/queries.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/updates.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/updates.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitor/addService.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/addService.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitor/monitor.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/monitor.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitor/serviceOperations.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/serviceOperations.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routeHandlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/routeHandlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uptimeMonitoringService.go" beforeDir="false" afterPath="$PROJECT_DIR$/uptimeMonitoringService.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,37 +111,42 @@
     <MESSAGE value="Added crawl_timeout functionality." />
     <MESSAGE value="Database is made functional and well co-ordinated with the Program." />
     <MESSAGE value="Implemented Object Oriented approach in Database package." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Object Oriented approach in Database package." />
+    <MESSAGE value="Improvised Code structure. Added several comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improvised Code structure. Added several comments." />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600344557386">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1600344557386" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1600668959695">
+    <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser" timestamp="1600715576070">
       <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1600715576070" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1600716332146">
+      <screen x="0" y="23" width="1440" height="828" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600668959695" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1600555876333" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1600668959694">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1600716332146" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1600716332145">
+      <screen x="0" y="23" width="1440" height="828" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600668959694" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1600555876332" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1600668959694">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1600716332145" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1600716332144">
+      <screen x="0" y="23" width="1440" height="828" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600668959694" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1600555876332" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1600668959695">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1600716332144" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1600716332146">
+      <screen x="0" y="23" width="1440" height="828" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600668959695" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1600555876333" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600668022190">
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1600716332146" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600670171629">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600668022190" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600670171629" />
     <state x="385" y="196" key="search.everywhere.popup" timestamp="1600281491899">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
