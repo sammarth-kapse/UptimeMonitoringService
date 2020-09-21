@@ -15,7 +15,9 @@ func UpdateURL(id string, request URLPatchRequest) (database.UrlData, bool) {
 		return database.UrlData{}, false
 	}
 
-	stopMonitoring(id)
+	if database.CheckIfURLStatusISActive(id) {
+		stopMonitoring(id)
+	}
 
 	database.UpdateFrequency(id, request.Frequency)
 	database.UpdateStatus(id, request.Status)

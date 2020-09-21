@@ -2,7 +2,8 @@ package database
 
 func GetURLDataByID(id string) (UrlData, bool) {
 
-	urlInfo := *getURLInfoInternal(id)
+	var urlInfo UrlData
+	urlInfo.getURLInfoFromDatabase(id)
 	if checkIfURLEmpty(urlInfo) { // when url == empty id is invalid
 		return urlInfo, false
 	}
@@ -11,14 +12,7 @@ func GetURLDataByID(id string) (UrlData, bool) {
 
 func CheckIfURLStatusISActive(id string) bool {
 
-	urlInfo := getURLInfoInternal(id)
+	var urlInfo UrlData
+	urlInfo.getURLInfoFromDatabase(id)
 	return urlInfo.Status == ACTIVE
-}
-
-func getURLInfoInternal(id string) *UrlData {
-	urlInfo := UrlData{
-		ID: id,
-	}
-	db.First(&urlInfo)
-	return &urlInfo
 }

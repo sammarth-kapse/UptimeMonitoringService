@@ -63,5 +63,5 @@ func checkURL(id, url string, crawlTimeout int) {
 		database.IncreaseFailureCount(id)
 	}
 
-	fmt.Println("Checked Url : ", url, " code: ", resp.StatusCode)
+	fmt.Println("Checked Url : ", url, " code: ", resp.StatusCode, "   time: ", time.Now())
 }

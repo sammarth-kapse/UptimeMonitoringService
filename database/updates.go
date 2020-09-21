@@ -2,38 +2,43 @@ package database
 
 func IncreaseFailureCount(id string) {
 
-	urlInfo := getURLInfoInternal(id)
+	var urlInfo UrlData
+	urlInfo.getURLInfoFromDatabase(id)
 
 	urlInfo.FailureCount++
 	if urlInfo.FailureCount == urlInfo.FailureThreshold {
 		urlInfo.Status = INACTIVE
 	}
-	db.Save(&urlInfo)
+	urlInfo.saveIntoDatabase()
 }
 
 func SetUrlAsInactive(id string) {
-	urlInfo := getURLInfoInternal(id)
+	var urlInfo UrlData
+	urlInfo.getURLInfoFromDatabase(id)
 	urlInfo.Status = INACTIVE
-	db.Save(&urlInfo)
+	urlInfo.saveIntoDatabase()
 }
 
 func UpdateFrequency(id string, newFrequency int) {
 
-	urlInfo := getURLInfoInternal(id)
+	var urlInfo UrlData
+	urlInfo.getURLInfoFromDatabase(id)
 	urlInfo.Frequency = newFrequency
-	db.Save(&urlInfo)
+	urlInfo.saveIntoDatabase()
 }
 
 func UpdateStatus(id string, newStatus string) {
 
-	urlInfo := getURLInfoInternal(id)
+	var urlInfo UrlData
+	urlInfo.getURLInfoFromDatabase(id)
 	urlInfo.Status = newStatus
-	db.Save(&urlInfo)
+	urlInfo.saveIntoDatabase()
 }
 
 func ResetFailureCount(id string) {
 
-	urlInfo := getURLInfoInternal(id)
+	var urlInfo UrlData
+	urlInfo.getURLInfoFromDatabase(id)
 	urlInfo.FailureCount = 0
-	db.Save(&urlInfo)
+	urlInfo.saveIntoDatabase()
 }
