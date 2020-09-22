@@ -35,7 +35,7 @@ func postURL(ctx *gin.Context) {
 	}
 }
 
-func getUrlData(ctx *gin.Context) {
+func getURLData(ctx *gin.Context) {
 
 	id := ctx.Param("id")
 

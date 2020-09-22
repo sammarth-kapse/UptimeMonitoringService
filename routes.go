@@ -9,7 +9,7 @@ func routes(router *gin.Engine) {
 
 	router.POST("/urls", postURL)
 
-	router.GET("/urls/:id", getUrlData)
+	router.GET("/urls/:id", getURLData)
 
 	router.PATCH("/urls/:id", patchURL)
 

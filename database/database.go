@@ -13,7 +13,7 @@ const protocol = "@tcp(127.0.0.1:3306)/"
 const INACTIVE = "inactive"
 const ACTIVE = "active"
 
-type UrlData struct {
+type URLData struct {
 	ID               string `gorm:"primaryKey"`
 	URL              string
 	CrawlTimeout     int
@@ -33,22 +33,22 @@ func init() {
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	handleError(err)
 
-	err = db.AutoMigrate(&UrlData{})
+	err = db.AutoMigrate(&URLData{})
 	handleError(err)
 
 }
 
-func (urlInfo *UrlData) getURLInfoFromDatabase() {
+func (urlInfo *URLData) getURLInfoFromDatabase() {
 	db.First(&urlInfo)
 }
 
-func (urlInfo *UrlData) saveIntoDatabase() {
+func (urlInfo *URLData) saveIntoDatabase() {
 	db.Save(&urlInfo)
 }
 
 // Utility Functions:
 
-func checkIfURLEmpty(urlInfo UrlData) bool {
+func checkIfURLEmpty(urlInfo URLData) bool {
 	return urlInfo.URL == ""
 }
 

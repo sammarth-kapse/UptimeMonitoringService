@@ -1,6 +1,6 @@
 package database
 
-func (urlInfo *UrlData) IncreaseFailureCount() {
+func (urlInfo *URLData) IncreaseFailureCount() {
 
 	urlInfo.getURLInfoFromDatabase()
 
@@ -11,28 +11,28 @@ func (urlInfo *UrlData) IncreaseFailureCount() {
 	urlInfo.saveIntoDatabase()
 }
 
-func (urlInfo *UrlData) SetUrlAsInactive() {
+func (urlInfo *URLData) SetUrlAsInactive() {
 
 	urlInfo.getURLInfoFromDatabase()
 	urlInfo.Status = INACTIVE
 	urlInfo.saveIntoDatabase()
 }
 
-func (urlInfo *UrlData) UpdateFrequency(newFrequency int) {
+func (urlInfo *URLData) UpdateFrequency(newFrequency int) {
 
 	urlInfo.getURLInfoFromDatabase()
 	urlInfo.Frequency = newFrequency
 	urlInfo.saveIntoDatabase()
 }
 
-func (urlInfo *UrlData) UpdateStatus(newStatus string) {
+func (urlInfo *URLData) UpdateStatus(newStatus string) {
 
 	urlInfo.getURLInfoFromDatabase()
 	urlInfo.Status = newStatus
 	urlInfo.saveIntoDatabase()
 }
 
-func (urlInfo *UrlData) ResetFailureCount() {
+func (urlInfo *URLData) ResetFailureCount() {
 
 	urlInfo.getURLInfoFromDatabase()
 	urlInfo.FailureCount = 0

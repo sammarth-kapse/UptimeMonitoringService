@@ -4,16 +4,16 @@ import (
 	"UptimeMonitoringService/database"
 )
 
-func GetURLDataByID(id string) (database.UrlData, bool) {
+func GetURLDataByID(id string) (database.URLData, bool) {
 	return database.GetURLDataByID(id)
 }
 
 // Updates frequency/ status for corresponding request.
-func UpdateURL(id string, request URLPatchRequest) (database.UrlData, bool) {
+func UpdateURL(id string, request URLPatchRequest) (database.URLData, bool) {
 
 	urlInfo, isPresent := GetURLDataByID(id)
 	if !isPresent {
-		return database.UrlData{}, false
+		return database.URLData{}, false
 	}
 
 	if urlInfo.CheckIfURLStatusISActive() {

@@ -24,7 +24,7 @@ type URLPatchRequest struct {
 }
 
 // Monitors a URL till it's status is 'active'
-func monitor(urlInfo *database.UrlData) {
+func monitor(urlInfo *database.URLData) {
 
 	isFirstCheck := true
 
@@ -38,14 +38,14 @@ func monitor(urlInfo *database.UrlData) {
 	}
 }
 
-func stopMonitoring(urlInfo *database.UrlData) {
+func stopMonitoring(urlInfo *database.URLData) {
 
 	urlInfo.SetUrlAsInactive()
 	time.Sleep(10 * time.Second)
 }
 
 // Makes an HTTP GET request on the url with the given set of parameters.
-func checkURL(urlInfo *database.UrlData) {
+func checkURL(urlInfo *database.URLData) {
 
 	if !urlInfo.CheckIfURLStatusISActive() {
 		return

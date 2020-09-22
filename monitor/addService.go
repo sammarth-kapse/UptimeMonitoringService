@@ -7,13 +7,13 @@ import (
 )
 
 // Adds the URL data into the database and starts monitoring.
-func AddService(req URLPostRequest) (database.UrlData, error) {
+func AddService(req URLPostRequest) (database.URLData, error) {
 
 	req.URL = checkForProtocolInURL(req.URL)
 
 	id := uuid.New().String()
 
-	urlInfo := database.UrlData{
+	urlInfo := database.URLData{
 		ID:               id,
 		URL:              req.URL,
 		CrawlTimeout:     req.CrawlTimeout,
