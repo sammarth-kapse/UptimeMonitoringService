@@ -5,30 +5,26 @@ import (
 	"fmt"
 	"github.com/gojektech/heimdall/httpclient"
 	"net/http"
+	"os"
 	"time"
 )
 
-const ACTIVE = "active"
-const INACTIVE = "inactive"
+// All the structures and constants are present in utility.go
 
-type URLPostRequest struct {
-	URL              string `json:"url"`
-	CrawlTimeout     int    `json:"crawl_timeout"`
-	Frequency        int    `json:"frequency"`
-	FailureThreshold int    `json:"failure_threshold"`
-}
-
-type URLPatchRequest struct {
-	Frequency int    `json:"frequency"`
-	Status    string `json:"status"`
+func init() {
+	err := database.DB.AutoMigrate(&URLData{})
+	if err != nil {
+		os.Exit(1)
+	}
+	SetRepo(&RepoStruct{})
 }
 
 // Monitors a URL till it's status is 'active'
-func monitor(urlInfo *database.URLData) {
+func monitor(urlInfo *URLData) {
 
 	isFirstCheck := true
 
-	for urlInfo.CheckIfURLStatusISActive() {
+	for CheckIfURLStatusISActive(urlInfo) {
 		if !isFirstCheck {
 			ticker := time.NewTimer(time.Duration(urlInfo.Frequency) * time.Second)
 			<-ticker.C
@@ -38,32 +34,40 @@ func monitor(urlInfo *database.URLData) {
 	}
 }
 
-func stopMonitoring(urlInfo *database.URLData) {
+func stopMonitoring(urlInfo *URLData) {
 
-	urlInfo.SetUrlAsInactive()
-	time.Sleep(10 * time.Second)
+	urlInfo.Status = INACTIVE
+	Repository.DatabaseSave(urlInfo)
+
+	time.Sleep(time.Duration(urlInfo.Frequency+2) * time.Second)
 }
 
 // Makes an HTTP GET request on the url with the given set of parameters.
-func checkURL(urlInfo *database.URLData) {
+func checkURL(urlInfo *URLData) {
 
-	if !urlInfo.CheckIfURLStatusISActive() {
+	if !CheckIfURLStatusISActive(urlInfo) {
 		return
 	}
 
-	timeout := time.Duration(urlInfo.CrawlTimeout) * time.Second
-	client := httpclient.NewClient(httpclient.WithHTTPTimeout(timeout))
+	resp, err := makeHTTPGetRequest(urlInfo.CrawlTimeout, urlInfo.URL)
 
-	// Use the clients GET method to create and execute the request
-	resp, err := client.Get(urlInfo.URL, nil)
 	if err != nil {
-		urlInfo.IncreaseFailureCount() // Request didn't complete within crawl_timeout.
+		IncreaseFailureCount(urlInfo) // Request didn't complete within crawl_timeout.
 		return
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		urlInfo.IncreaseFailureCount() // Unexpected status-code in response.
+		IncreaseFailureCount(urlInfo) // Unexpected status-code in response.
 	}
 
 	fmt.Println("Checked Url : ", urlInfo.URL, " code: ", resp.StatusCode, "   time: ", time.Now())
+}
+
+func makeHTTPGetRequest(crawlTimeout int, url string) (*http.Response, error) {
+
+	timeout := time.Duration(crawlTimeout) * time.Second
+	client := httpclient.NewClient(httpclient.WithHTTPTimeout(timeout))
+
+	// Use the clients GET method to create and execute the request
+	return client.Get(url, nil)
 }

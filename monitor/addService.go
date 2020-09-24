@@ -1,19 +1,18 @@
 package monitor
 
 import (
-	"UptimeMonitoringService/database"
 	"github.com/google/uuid"
 	"regexp"
 )
 
 // Adds the URL data into the database and starts monitoring.
-func AddService(req URLPostRequest) (database.URLData, error) {
+func AddService(req URLPostRequest) (URLData, error) {
 
 	req.URL = checkForProtocolInURL(req.URL)
 
 	id := uuid.New().String()
 
-	urlInfo := database.URLData{
+	urlInfo := URLData{
 		ID:               id,
 		URL:              req.URL,
 		CrawlTimeout:     req.CrawlTimeout,
@@ -23,7 +22,7 @@ func AddService(req URLPostRequest) (database.URLData, error) {
 		FailureCount:     0,
 	}
 
-	urlInfo.AddURLDataInDatabase()
+	Repository.DatabaseCreate(&urlInfo)
 
 	go monitor(&urlInfo)
 
