@@ -19,16 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Used Object Oriented approach in database package.">
-      <change afterPath="$PROJECT_DIR$/monitor/services.go" afterDir="false" />
+    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Added Interface based approach to ease unit testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/addRemove.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/queries.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/updates.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/addService.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/addService.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/addService.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/databaseOperations.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/monitor/monitor.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/monitor.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/serviceOperations.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/services.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/services.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitor/utility.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/utility.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +88,7 @@
       <package value="UptimeMonitoringService" />
       <method v="2" />
     </configuration>
-    <configuration name="TestGetURLDataByID in UptimeMonitoringService/monitor" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestCheckURLUptime in UptimeMonitoringService/monitor" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="UptimeMonitoringService" />
       <working_directory value="$PROJECT_DIR$/monitor" />
       <framework value="gotest" />
@@ -99,12 +96,59 @@
       <package value="UptimeMonitoringService/monitor" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestGetURLDataByID\E$" />
+      <pattern value="^\QTestCheckURLUptime\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestFormatURLProtocol in UptimeMonitoringService/monitor" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="UptimeMonitoringService" />
+      <working_directory value="$PROJECT_DIR$/monitor" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="UptimeMonitoringService/monitor" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestFormatURLProtocol\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestIncreaseFailureCount in UptimeMonitoringService/monitor" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="UptimeMonitoringService" />
+      <working_directory value="$PROJECT_DIR$/monitor" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="UptimeMonitoringService/monitor" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestIncreaseFailureCount\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestIsHttpOrHttpsRequest in UptimeMonitoringService/monitor" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="UptimeMonitoringService" />
+      <working_directory value="$PROJECT_DIR$/monitor" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="UptimeMonitoringService/monitor" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestIsHttpOrHttpsRequest\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test UptimeMonitoringService/monitor" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="UptimeMonitoringService" />
+      <working_directory value="$PROJECT_DIR$/monitor" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="UptimeMonitoringService/monitor" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestGetURLDataByID in UptimeMonitoringService/monitor" />
+        <item itemvalue="Go Test.go test UptimeMonitoringService/monitor" />
+        <item itemvalue="Go Test.TestCheckURLUptime in UptimeMonitoringService/monitor" />
+        <item itemvalue="Go Test.TestIsHttpOrHttpsRequest in UptimeMonitoringService/monitor" />
+        <item itemvalue="Go Test.TestFormatURLProtocol in UptimeMonitoringService/monitor" />
+        <item itemvalue="Go Test.TestIncreaseFailureCount in UptimeMonitoringService/monitor" />
       </list>
     </recent_temporary>
   </component>
@@ -132,41 +176,42 @@
     <MESSAGE value="Implemented Object Oriented approach in Database package." />
     <MESSAGE value="Improvised Code structure. Added several comments." />
     <MESSAGE value="Used Object Oriented approach in database package." />
-    <option name="LAST_COMMIT_MESSAGE" value="Used Object Oriented approach in database package." />
+    <MESSAGE value="Added Interface based approach to ease unit testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Interface based approach to ease unit testing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600344557386">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1600344557386" />
-    <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser" timestamp="1600985746049">
+    <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser" timestamp="1601076984855">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1600985746049" />
-    <state width="1398" height="306" key="GridCell.Tab.0.bottom" timestamp="1600986368194">
+    <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1601076984855" />
+    <state width="1398" height="306" key="GridCell.Tab.0.bottom" timestamp="1601078810712">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600986368194" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1600716332146" />
-    <state width="1398" height="306" key="GridCell.Tab.0.center" timestamp="1600986368193">
+    <state width="1398" height="306" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1601078810712" />
+    <state width="1398" height="306" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1601072568890" />
+    <state width="1398" height="306" key="GridCell.Tab.0.center" timestamp="1601078810710">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600986368193" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1600716332145" />
-    <state width="1398" height="306" key="GridCell.Tab.0.left" timestamp="1600986368192">
+    <state width="1398" height="306" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1601078810710" />
+    <state width="1398" height="306" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1601072568889" />
+    <state width="1398" height="306" key="GridCell.Tab.0.left" timestamp="1601078810710">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600986368192" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1600716332144" />
-    <state width="1398" height="306" key="GridCell.Tab.0.right" timestamp="1600986368193">
+    <state width="1398" height="306" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1601078810710" />
+    <state width="1398" height="306" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1601072568888" />
+    <state width="1398" height="306" key="GridCell.Tab.0.right" timestamp="1601078810711">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600986368193" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1600716332146" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600716783497">
+    <state width="1398" height="306" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1601078810711" />
+    <state width="1398" height="306" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1601072568890" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600986740268">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600716783497" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600986740268" />
     <state x="385" y="196" key="search.everywhere.popup" timestamp="1600281491899">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

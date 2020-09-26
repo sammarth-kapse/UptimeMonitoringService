@@ -1,6 +1,9 @@
 package monitor
 
-import "fmt"
+import (
+	"fmt"
+	"regexp"
+)
 
 const ACTIVE = "active"
 const INACTIVE = "inactive"
@@ -26,6 +29,38 @@ type URLData struct {
 	FailureThreshold int
 	Status           string
 	FailureCount     int
+}
+
+func isURLStatusActive(urlInfo *URLData) bool {
+
+	err := repository.databaseGet(urlInfo)
+	handleError(err)
+	return urlInfo.Status == ACTIVE
+}
+
+func increaseFailureCount(urlInfo *URLData) {
+	urlInfo.FailureCount++
+	if urlInfo.FailureCount >= urlInfo.FailureThreshold {
+		urlInfo.Status = INACTIVE
+	}
+	err := repository.databaseSave(urlInfo)
+	handleError(err)
+}
+
+func formatURLProtocol(urlAddress string) string {
+
+	if !isHttpOrHttpsRequest(urlAddress) {
+		urlAddress = "https://" + urlAddress
+	}
+	return urlAddress
+}
+
+func isHttpOrHttpsRequest(urlAddress string) bool {
+	isHttp, err := regexp.MatchString("http://([a-z]+)", urlAddress)
+	handleError(err)
+	var isHttps bool
+	isHttps, err = regexp.MatchString("https://([a-z]+)", urlAddress)
+	return isHttp || isHttps
 }
 
 func checkIfURLEmpty(urlInfo URLData) bool {

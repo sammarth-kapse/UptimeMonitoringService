@@ -2,33 +2,33 @@ package monitor
 
 import "UptimeMonitoringService/database"
 
-type RepositoryInterface interface {
-	DatabaseGet(urlInfo *URLData)
-	DatabaseSave(urlInfo *URLData)
-	DatabaseCreate(urlInfo *URLData)
-	DatabaseDelete(urlInfo *URLData)
+type RepositoryController interface {
+	databaseGet(urlInfo *URLData) error
+	databaseSave(urlInfo *URLData) error
+	databaseCreate(urlInfo *URLData) error
+	databaseDelete(urlInfo *URLData) error
 }
 
-type RepoStruct struct{}
+type monitorRepo struct{}
 
-var Repository RepositoryInterface
+var repository RepositoryController
 
-func SetRepo(repoType RepositoryInterface) {
-	Repository = repoType
+func setRepoController(repoType RepositoryController) {
+	repository = repoType
 }
 
-func (rp *RepoStruct) DatabaseGet(urlInfo *URLData) {
-	database.DB.First(&urlInfo)
+func (rp *monitorRepo) databaseGet(urlInfo *URLData) error {
+	return database.DB.First(&urlInfo).Error
 }
 
-func (rp *RepoStruct) DatabaseSave(urlInfo *URLData) {
-	database.DB.Save(&urlInfo)
+func (rp *monitorRepo) databaseSave(urlInfo *URLData) error {
+	return database.DB.Save(&urlInfo).Error
 }
 
-func (rp *RepoStruct) DatabaseCreate(urlInfo *URLData) {
-	database.DB.Create(&urlInfo)
+func (rp *monitorRepo) databaseCreate(urlInfo *URLData) error {
+	return database.DB.Create(&urlInfo).Error
 }
 
-func (rp *RepoStruct) DatabaseDelete(urlInfo *URLData) {
-	database.DB.Delete(&urlInfo)
+func (rp *monitorRepo) databaseDelete(urlInfo *URLData) error {
+	return database.DB.Delete(&urlInfo).Error
 }
