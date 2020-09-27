@@ -1,21 +1,16 @@
 package monitor
 
 import (
-	"UptimeMonitoringService/database"
 	"fmt"
 	"github.com/gojektech/heimdall/httpclient"
 	"net/http"
-	"os"
 	"time"
 )
 
 // All the structures and constants are present in utility.go
 
 func init() {
-	err := database.DB.AutoMigrate(&URLData{})
-	if err != nil {
-		os.Exit(1)
-	}
+
 	setRepoController(&monitorRepo{})
 	setHTTPController(&monitorHttp{})
 }

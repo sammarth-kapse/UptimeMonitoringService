@@ -1,0 +1,11 @@
+FROM golang:alpine as builder
+
+RUN apk update && apk add --no-cache git
+
+WORKDIR /UptimeMonitoringService/monitor
+
+COPY . .
+
+RUN go mod download
+
+CMD CGO_ENABLED=0 go test -v  ./...

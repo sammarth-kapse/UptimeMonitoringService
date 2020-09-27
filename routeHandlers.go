@@ -8,6 +8,8 @@ import (
 	"net/http"
 )
 
+// All the calls in this file to monitor package's functions are available in monitor/services.go
+
 // Adds the request URL and corresponding data to the system.
 func postURL(ctx *gin.Context) {
 	var postRequest monitor.URLPostRequest

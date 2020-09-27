@@ -29,6 +29,7 @@ func TestCheckURLUptime(t *testing.T) {
 		&http.Response{StatusCode: http.StatusConflict}, fmt.Errorf("SomeError"))
 
 	setHTTPController(mockHttp)
+
 	// Case 1: status_code = 200 AND crawl_timeout > delay
 	urlInfo1 := URLData{
 		ID:               "Case1",

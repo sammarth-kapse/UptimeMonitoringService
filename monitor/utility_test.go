@@ -47,7 +47,7 @@ func TestIsURLStatusActiveWhenActive(t *testing.T) {
 	assert.Equal(t, isActive, true)
 }
 
-func TestIsURLStatusActiveWhenInActive(t *testing.T) {
+func TestIsURLStatusActiveWhenInactive(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 	mockRepo := NewMockRepositoryController(ctrl)
