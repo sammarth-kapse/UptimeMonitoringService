@@ -19,16 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Implemented Unit testing.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/monitor.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/monitor.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/monitor_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/monitor_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/utility_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/utility_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routeHandlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/routeHandlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uptimeMonitoringService.go" beforeDir="false" afterPath="$PROJECT_DIR$/uptimeMonitoringService.go" afterDir="false" />
-    </list>
+    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Docker Implementation executed." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -187,7 +178,8 @@
     <MESSAGE value="Used Object Oriented approach in database package." />
     <MESSAGE value="Added Interface based approach to ease unit testing" />
     <MESSAGE value="Implemented Unit testing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Unit testing." />
+    <MESSAGE value="Docker Implementation executed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Docker Implementation executed." />
   </component>
   <component name="WindowStateProjectService">
     <state x="520" y="290" key="#Go_Modules" timestamp="1601147160729">
@@ -206,34 +198,34 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1601076984855" />
-    <state width="1398" height="306" key="GridCell.Tab.0.bottom" timestamp="1601240129631">
+    <state width="1398" height="306" key="GridCell.Tab.0.bottom" timestamp="1601244664376">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1601240129631" />
+    <state width="1398" height="306" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1601244664376" />
     <state width="1398" height="306" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1601164228612" />
-    <state width="1398" height="306" key="GridCell.Tab.0.center" timestamp="1601240129628">
+    <state width="1398" height="306" key="GridCell.Tab.0.center" timestamp="1601244664373">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1601240129628" />
+    <state width="1398" height="306" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1601244664373" />
     <state width="1398" height="306" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1601164228610" />
-    <state width="1398" height="306" key="GridCell.Tab.0.left" timestamp="1601240129626">
+    <state width="1398" height="306" key="GridCell.Tab.0.left" timestamp="1601244664372">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1601240129626" />
+    <state width="1398" height="306" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1601244664372" />
     <state width="1398" height="306" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1601164228610" />
-    <state width="1398" height="306" key="GridCell.Tab.0.right" timestamp="1601240129629">
+    <state width="1398" height="306" key="GridCell.Tab.0.right" timestamp="1601244664374">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1601240129629" />
+    <state width="1398" height="306" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1601244664374" />
     <state width="1398" height="306" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1601164228611" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1601148901136">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1601148901136" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1601241308702">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1601244667283">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1601241308702" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1601244667283" />
     <state x="385" y="196" key="search.everywhere.popup" timestamp="1600281491899">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
