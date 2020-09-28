@@ -11,35 +11,60 @@
 
 ## Installation
 
-There are 2 ways to install service:
+There are 3 ways to install this service:
 
 
-#### Using Docker Containers (Suggested Way.)
+#### 1. Using Docker Compose (Suggested Way)
+
+This method of installation, doesn't require for you to setup database on your local machine.
+
 Prerequisites | Following should be installed on the local machine:
 ```
 Docker desktop
 docker-compose
 ```
-Run following commands in terminal:
+Run following commands in the terminal:
 ```
 git clone https://github.com/sammarth-kapse/UptimeMonitoringService.git
 cd UptimeMonitoringService
 docker-compose up --build
 ```
+________________
 
+##### For the other 2 methods of installation, you would have to setup database on local machine
+```
+mysql database named as 'uptime_monitoring_system'
+Username = sammarth
+Password = mysql
+```
+OR
+```
+You can clone the repository.
+Edit the environment variables present in .env file.
+Update the username, database-name and password according to your use.
+```
+---------------
 
-
-#### On local machine
+#### 2. On local machine
 Prerequisites | Following should be installed on the local machine:
 ```
 Golang
 ```
-Run following commands in terminal:
+Run following commands in the terminal:
 ```
 git clone https://github.com/sammarth-kapse/UptimeMonitoringService.git
 cd UptimeMonitoringService
 go mod download
 ```
+##### a) Without building
+Run the following command on terminal - 
+```
+./UptimeMonitoringSevice
+```
+
+##### b) By Building -
+You will have to make the following change in the code base-
+
 In database.go :
 ```
 Edit Line no. 42 => cfg.host = "localhost"
@@ -50,7 +75,15 @@ go build .
 ```
 Run
 ```
-./uptimeMonitoringSevice
+./UptimeMonitoringSevice
+```
+--------------
+#### 3. Using Docker Image
+
+Run following commands in the terminal:
+```
+docker image pull sammarth/uptime-monitoring-service
+docker run -p 8080:8080 sammarth/uptime-monitoring-service
 ```
 
 
@@ -89,7 +122,7 @@ Response:
 }
 
 ```
-
+---------------
 #### GET URL Information
 Use `GET /urls/:id` to get URL Info for the corresponding ID
 
@@ -105,7 +138,7 @@ Response:
   “failure_count”:              5
 }
 ```
-   
+---------------   
 #### Update URL Parameters
 Use `PATCH /urls/:id` to update parameters.
 
@@ -132,13 +165,15 @@ Response:
   “failure_count”:              0
 }
 ```
-
+---------------
 #### Activate URL status
 Use `POST /urls/:id/activate` to activate the monitoring of the URL.
 
+---------------
 #### Deactivate URL status
 Use `POST /urls/:id/deactivate` to deactivate the monitoring of the URL.
 
+---------------
 #### Delete URL from System
 Use `DELETE /urls/:id` to remove the URL from system.
 
@@ -146,18 +181,18 @@ Use `DELETE /urls/:id` to remove the URL from system.
 ## Testing
 To run test functions:
 
-#### On Docker: (Suggested Way.)
+#### 1. With Docker Compose (Suggested Way)
 
-Run following commands in terminal:
+Run following commands in the terminal:
 ```
 docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
 ```
 
 
 
-#### On local machine
+#### 2. On local machine
 
-Run following commands in terminal:
+Run following commands in the terminal:
 ```
 cd monitor
 go test
