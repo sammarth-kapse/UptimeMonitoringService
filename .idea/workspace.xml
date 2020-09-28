@@ -19,9 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Docker Implementation executed.">
+    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Updated Read me and added binary file, ready to execute.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UptimeMonitoringService" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routeHandlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/routeHandlers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +184,8 @@
     <MESSAGE value="Added Interface based approach to ease unit testing" />
     <MESSAGE value="Implemented Unit testing." />
     <MESSAGE value="Docker Implementation executed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Docker Implementation executed." />
+    <MESSAGE value="Updated Read me and added binary file, ready to execute." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Read me and added binary file, ready to execute." />
   </component>
   <component name="WindowStateProjectService">
     <state x="520" y="290" key="#Go_Modules" timestamp="1601147160729">
@@ -225,10 +228,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1601148901136" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1601245675607">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1601275216211">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1601245675607" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1601275216211" />
     <state x="385" y="196" key="search.everywhere.popup" timestamp="1600281491899">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

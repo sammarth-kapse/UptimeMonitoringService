@@ -52,7 +52,7 @@ func getURLData(ctx *gin.Context) {
 			"failure_count":     response.FailureCount,
 		})
 	} else {
-		ctx.JSON(http.StatusConflict, gin.H{
+		ctx.JSON(http.StatusNotFound, gin.H{
 			"id": "invalid",
 		})
 	}
@@ -81,7 +81,7 @@ func patchURL(ctx *gin.Context) {
 			"failure_count":     response.FailureCount,
 		})
 	} else {
-		ctx.JSON(http.StatusConflict, gin.H{
+		ctx.JSON(http.StatusNotFound, gin.H{
 			"id": "invalid",
 		})
 	}
@@ -93,12 +93,12 @@ func deleteURL(ctx *gin.Context) {
 
 	isPresent := monitor.DeleteURLData(id)
 	if isPresent {
-		ctx.JSON(http.StatusOK, gin.H{
+		ctx.JSON(http.StatusNoContent, gin.H{
 			"id":      id,
 			"deleted": true,
 		})
 	} else {
-		ctx.JSON(http.StatusConflict, gin.H{
+		ctx.JSON(http.StatusNotFound, gin.H{
 			"id": "invalid",
 		})
 	}
@@ -122,7 +122,7 @@ func activateURL(ctx *gin.Context) {
 		})
 
 	} else {
-		ctx.JSON(http.StatusConflict, gin.H{
+		ctx.JSON(http.StatusNotFound, gin.H{
 			"id": "invalid",
 		})
 	}
@@ -145,7 +145,7 @@ func deactivateURL(ctx *gin.Context) {
 			"message": "Deactivated",
 		})
 	} else {
-		ctx.JSON(http.StatusConflict, gin.H{
+		ctx.JSON(http.StatusNotFound, gin.H{
 			"id": "invalid",
 		})
 	}

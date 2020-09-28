@@ -197,3 +197,11 @@ Run following commands in the terminal:
 cd monitor
 go test
 ```
+
+## HTTP status code returned
+ Status Code | Explanation |
+| ------- | --- |
+| 200 | POST ,GET, PATCH Request successful |
+| 204 | DELETE request successful |
+| 400 | Request is not in proper format |
+| 404 | ID DNE|
