@@ -19,13 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Updated Status Codes.">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UptimeMonitoringService" beforeDir="false" afterPath="$PROJECT_DIR$/UptimeMonitoringService" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
-    </list>
+    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Minor Changes." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -187,7 +181,8 @@
     <MESSAGE value="Docker Implementation executed." />
     <MESSAGE value="Updated Read me and added binary file, ready to execute." />
     <MESSAGE value="Updated Status Codes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Status Codes." />
+    <MESSAGE value="Minor Changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor Changes." />
   </component>
   <component name="WindowStateProjectService">
     <state x="520" y="290" key="#Go_Modules" timestamp="1601147160729">
@@ -230,10 +225,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1601148901136" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1601315007304">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1601392602410">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1601315007304" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1601392602410" />
     <state x="385" y="196" key="search.everywhere.popup" timestamp="1600281491899">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
