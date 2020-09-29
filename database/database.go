@@ -38,8 +38,13 @@ func getConfig() envConfig {
 		databaseName: os.Getenv("DB_NAME"),
 	}
 
-	// When running without docker => cfg.host = "localhost"
-	cfg.host = "host.docker.internal"
+	isDocker, _ := os.LookupEnv("DOCKER")
+
+	if isDocker == "false" {
+		cfg.host = "localhost"
+	} else {
+		cfg.host = "host.docker.internal"
+	}
 
 	cfg.protocol = "@tcp(" + cfg.host + ":" + cfg.port + ")/"
 

@@ -45,7 +45,7 @@ Update the username, database-name and password according to your use.
 ```
 ---------------
 
-#### 2. On local machine
+#### 2. On local machine 
 Prerequisites | Following should be installed on the local machine:
 ```
 Golang
@@ -56,26 +56,14 @@ git clone https://github.com/sammarth-kapse/UptimeMonitoringService.git
 cd UptimeMonitoringService
 go mod download
 ```
-##### a) Without building
-Run the following command on terminal - 
-```
-./UptimeMonitoringSevice
-```
 
-##### b) By Building -
-You will have to make the following change in the code base-
-
-In database.go :
-```
-Edit Line no. 42 => cfg.host = "localhost"
-```
 Build
 ```
 go build .
 ```
 Run
 ```
-./UptimeMonitoringSevice
+DOCKER=false ./UptimeMonitoringSevice
 ```
 --------------
 #### 3. Using Docker Image

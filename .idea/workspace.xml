@@ -19,11 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Updated Read me and added binary file, ready to execute.">
+    <list default="true" id="c20dddb1-3a19-4708-b9f7-ff5e77e1df15" name="Default Changelist" comment="Updated Status Codes.">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UptimeMonitoringService" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routeHandlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/routeHandlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UptimeMonitoringService" beforeDir="false" afterPath="$PROJECT_DIR$/UptimeMonitoringService" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +186,8 @@
     <MESSAGE value="Implemented Unit testing." />
     <MESSAGE value="Docker Implementation executed." />
     <MESSAGE value="Updated Read me and added binary file, ready to execute." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Read me and added binary file, ready to execute." />
+    <MESSAGE value="Updated Status Codes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Status Codes." />
   </component>
   <component name="WindowStateProjectService">
     <state x="520" y="290" key="#Go_Modules" timestamp="1601147160729">
@@ -204,34 +206,34 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1601076984855" />
-    <state width="1398" height="306" key="GridCell.Tab.0.bottom" timestamp="1601244664376">
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom" timestamp="1601389882729">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1601244664376" />
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1601389882729" />
     <state width="1398" height="306" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1601164228612" />
-    <state width="1398" height="306" key="GridCell.Tab.0.center" timestamp="1601244664373">
+    <state width="1398" height="304" key="GridCell.Tab.0.center" timestamp="1601389882724">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1601244664373" />
+    <state width="1398" height="304" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1601389882724" />
     <state width="1398" height="306" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1601164228610" />
-    <state width="1398" height="306" key="GridCell.Tab.0.left" timestamp="1601244664372">
+    <state width="1398" height="304" key="GridCell.Tab.0.left" timestamp="1601389882568">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1601244664372" />
+    <state width="1398" height="304" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1601389882568" />
     <state width="1398" height="306" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1601164228610" />
-    <state width="1398" height="306" key="GridCell.Tab.0.right" timestamp="1601244664374">
+    <state width="1398" height="304" key="GridCell.Tab.0.right" timestamp="1601389882727">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="306" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1601244664374" />
+    <state width="1398" height="304" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1601389882727" />
     <state width="1398" height="306" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1601164228611" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1601148901136">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1601148901136" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1601275216211">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1601315007304">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1601275216211" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1601315007304" />
     <state x="385" y="196" key="search.everywhere.popup" timestamp="1600281491899">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
