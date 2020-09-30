@@ -1,6 +1,7 @@
 package monitor
 
 import (
+	"UptimeMonitoringService/database"
 	"fmt"
 	"regexp"
 )
@@ -21,29 +22,19 @@ type URLPatchRequest struct {
 	CrawlTimeout     int `json:"crawl_timeout"`
 }
 
-type URLData struct {
-	ID               string `gorm:"primaryKey"`
-	URL              string
-	CrawlTimeout     int
-	Frequency        int
-	FailureThreshold int
-	Status           string
-	FailureCount     int
-}
+func isURLStatusActive(urlInfo *database.URLData) bool {
 
-func isURLStatusActive(urlInfo *URLData) bool {
-
-	err := repository.databaseGet(urlInfo)
+	err := repository.DatabaseGet(urlInfo)
 	handleError(err)
 	return urlInfo.Status == ACTIVE
 }
 
-func increaseFailureCount(urlInfo *URLData) {
+func increaseFailureCount(urlInfo *database.URLData) {
 	urlInfo.FailureCount++
 	if urlInfo.FailureCount >= urlInfo.FailureThreshold {
 		urlInfo.Status = INACTIVE
 	}
-	err := repository.databaseSave(urlInfo)
+	err := repository.DatabaseSave(urlInfo)
 	handleError(err)
 }
 
@@ -63,7 +54,7 @@ func isHttpOrHttpsRequest(urlAddress string) bool {
 	return isHttp || isHttps
 }
 
-func checkIfURLEmpty(urlInfo URLData) bool {
+func checkIfURLEmpty(urlInfo database.URLData) bool {
 	return urlInfo.URL == ""
 }
 

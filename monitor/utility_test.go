@@ -1,6 +1,8 @@
 package monitor
 
 import (
+	"UptimeMonitoringService/database"
+	"UptimeMonitoringService/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/magiconair/properties/assert"
 	"testing"
@@ -9,12 +11,13 @@ import (
 func TestIncreaseFailureCount(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	mockRepo := NewMockRepositoryController(ctrl)
+	mockRepo := mocks.NewMockRepositoryController(ctrl)
 
-	mockRepo.EXPECT().databaseSave(gomock.Any()).Return(nil).MaxTimes(2)
-	setRepoController(mockRepo)
+	mockRepo.EXPECT().DatabaseSave(gomock.Any()).Return(nil).MaxTimes(2)
+	database.SetRepoController(mockRepo)
+	repository = database.GetRepoController()
 
-	urlInfo := URLData{
+	urlInfo := database.URLData{
 		FailureThreshold: 5,
 		Status:           ACTIVE,
 		FailureCount:     0,
@@ -35,30 +38,32 @@ func TestIncreaseFailureCount(t *testing.T) {
 func TestIsURLStatusActiveWhenActive(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	mockRepo := NewMockRepositoryController(ctrl)
+	mockRepo := mocks.NewMockRepositoryController(ctrl)
 
-	mockRepo.EXPECT().databaseGet(&URLData{}).DoAndReturn(func(urlInfo *URLData) error {
+	mockRepo.EXPECT().DatabaseGet(&database.URLData{}).DoAndReturn(func(urlInfo *database.URLData) error {
 		urlInfo.Status = ACTIVE
 		return nil
 	})
-	setRepoController(mockRepo)
+	database.SetRepoController(mockRepo)
+	repository = database.GetRepoController()
 
-	isActive := isURLStatusActive(&URLData{})
+	isActive := isURLStatusActive(&database.URLData{})
 	assert.Equal(t, isActive, true)
 }
 
 func TestIsURLStatusActiveWhenInactive(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	mockRepo := NewMockRepositoryController(ctrl)
+	mockRepo := mocks.NewMockRepositoryController(ctrl)
 
-	mockRepo.EXPECT().databaseGet(&URLData{}).DoAndReturn(func(urlInfo *URLData) error {
+	mockRepo.EXPECT().DatabaseGet(&database.URLData{}).DoAndReturn(func(urlInfo *database.URLData) error {
 		urlInfo.Status = INACTIVE
 		return nil
 	})
-	setRepoController(mockRepo)
+	database.SetRepoController(mockRepo)
+	repository = database.GetRepoController()
 
-	isActive := isURLStatusActive(&URLData{})
+	isActive := isURLStatusActive(&database.URLData{})
 	assert.Equal(t, isActive, false)
 }
 
@@ -113,13 +118,13 @@ func TestIsHttpOrHttpsRequest(t *testing.T) {
 func TestCheckIfURLEmpty(t *testing.T) {
 
 	type testFormat struct {
-		urlInfo        URLData
+		urlInfo        database.URLData
 		expectedResult bool
 	}
 
 	testArr := []testFormat{
-		{URLData{URL: "http://testURL.com"}, false},
-		{URLData{}, true}, // Empty URL
+		{database.URLData{URL: "http://testURL.com"}, false},
+		{database.URLData{}, true}, // Empty URL
 	}
 
 	for _, testItem := range testArr {

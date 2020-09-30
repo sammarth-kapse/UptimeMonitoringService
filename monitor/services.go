@@ -1,14 +1,17 @@
 package monitor
 
-import "github.com/google/uuid"
+import (
+	"UptimeMonitoringService/database"
+	"github.com/google/uuid"
+)
 
-func AddService(req URLPostRequest) (URLData, error) {
+func AddService(req URLPostRequest) (database.URLData, error) {
 
 	req.URL = formatURLProtocol(req.URL)
 
 	id := uuid.New().String()
 
-	urlInfo := URLData{
+	urlInfo := database.URLData{
 		ID:               id,
 		URL:              req.URL,
 		CrawlTimeout:     req.CrawlTimeout,
@@ -18,7 +21,7 @@ func AddService(req URLPostRequest) (URLData, error) {
 		FailureCount:     0,
 	}
 
-	err := repository.databaseCreate(&urlInfo)
+	err := repository.DatabaseCreate(&urlInfo)
 	handleError(err)
 
 	go monitor(&urlInfo)
@@ -26,24 +29,24 @@ func AddService(req URLPostRequest) (URLData, error) {
 	return urlInfo, nil
 }
 
-func GetURLDataByID(id string) (*URLData, bool) {
+func GetURLDataByID(id string) (*database.URLData, bool) {
 
-	urlInfo := URLData{
+	urlInfo := database.URLData{
 		ID: id,
 	}
-	err := repository.databaseGet(&urlInfo)
+	err := repository.DatabaseGet(&urlInfo)
 	handleError(err)
 	if checkIfURLEmpty(urlInfo) { // when url == empty -> id is invalid; In utility.go
-		return &URLData{}, false
+		return &database.URLData{}, false
 	}
 	return &urlInfo, true
 }
 
-func UpdateURL(id string, request URLPatchRequest) (URLData, bool) {
+func UpdateURL(id string, request URLPatchRequest) (database.URLData, bool) {
 
 	urlInfo, isPresent := GetURLDataByID(id)
 	if !isPresent {
-		return URLData{}, false
+		return database.URLData{}, false
 	}
 
 	if isURLStatusActive(urlInfo) {
@@ -61,7 +64,7 @@ func UpdateURL(id string, request URLPatchRequest) (URLData, bool) {
 	}
 	urlInfo.Status = ACTIVE
 	urlInfo.FailureCount = 0
-	err := repository.databaseSave(urlInfo)
+	err := repository.DatabaseSave(urlInfo)
 	handleError(err)
 
 	go monitor(urlInfo)
@@ -81,7 +84,7 @@ func ActivateURL(id string) (string, bool, bool) {
 
 	urlInfo.Status = ACTIVE
 	urlInfo.FailureCount = 0
-	err := repository.databaseSave(urlInfo)
+	err := repository.DatabaseSave(urlInfo)
 	handleError(err)
 
 	go monitor(urlInfo)
@@ -115,7 +118,7 @@ func DeleteURLData(id string) bool {
 	if isURLStatusActive(urlInfo) {
 		stopMonitoring(urlInfo)
 	}
-	err := repository.databaseDelete(urlInfo)
+	err := repository.DatabaseDelete(urlInfo)
 	handleError(err)
 
 	return true

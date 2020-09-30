@@ -8,6 +8,16 @@ import (
 	"os"
 )
 
+type URLData struct {
+	ID               string `gorm:"primaryKey"`
+	URL              string
+	CrawlTimeout     int
+	Frequency        int
+	FailureThreshold int
+	Status           string
+	FailureCount     int
+}
+
 type envConfig struct {
 	host, port, username, password, databaseName, protocol string
 }
@@ -23,6 +33,11 @@ func InitializeDatabase() {
 	var err error
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	handleError(err)
+
+	err = DB.AutoMigrate(&URLData{}) // Makes the table of structure URLData
+	if err != nil {
+		os.Exit(1)
+	}
 }
 
 // Builds the config to setup the database

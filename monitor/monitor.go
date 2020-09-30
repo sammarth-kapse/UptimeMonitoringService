@@ -1,35 +1,27 @@
 package monitor
 
 import (
+	"UptimeMonitoringService/database"
+	"UptimeMonitoringService/httpRequests"
 	"fmt"
-	"github.com/gojektech/heimdall/httpclient"
 	"net/http"
 	"time"
 )
 
 // All the structures and constants are present in utility.go
 
+var repository database.RepositoryController
+var httpCalls httpRequests.HttpController
+
 func init() {
-
-	setRepoController(&monitorRepo{})
-	setHTTPController(&monitorHttp{})
-}
-
-type HttpController interface {
-	makeHTTPGetRequest(crawlTimeout int, url string) (*http.Response, error)
-}
-
-type monitorHttp struct{}
-
-var httpCalls HttpController
-
-func setHTTPController(hType HttpController) {
-	httpCalls = hType
+	database.SetRepoController(&database.MonitorRepo{})
+	httpRequests.SetHTTPController(&httpRequests.MonitorHttp{})
+	repository = database.GetRepoController()
+	httpCalls = httpRequests.GetHTTPController()
 }
 
 // Monitors a URL till it's status is 'active'
-func monitor(urlInfo *URLData) {
-
+func monitor(urlInfo *database.URLData) {
 	isFirstCheck := true
 
 	for isURLStatusActive(urlInfo) {
@@ -42,22 +34,22 @@ func monitor(urlInfo *URLData) {
 	}
 }
 
-func stopMonitoring(urlInfo *URLData) {
+func stopMonitoring(urlInfo *database.URLData) {
 
 	urlInfo.Status = INACTIVE
-	err := repository.databaseSave(urlInfo)
+	err := repository.DatabaseSave(urlInfo)
 	handleError(err)
 
 	time.Sleep(time.Duration(urlInfo.Frequency+2) * time.Second)
 }
 
-func checkURLUptime(urlInfo *URLData) {
+func checkURLUptime(urlInfo *database.URLData) {
 
 	if !isURLStatusActive(urlInfo) {
 		return
 	}
 
-	resp, err := httpCalls.makeHTTPGetRequest(urlInfo.CrawlTimeout, urlInfo.URL)
+	resp, err := httpCalls.MakeHTTPGetRequest(urlInfo.CrawlTimeout, urlInfo.URL)
 
 	if err != nil {
 		increaseFailureCount(urlInfo) // Request didn't complete within crawl_timeout.
@@ -69,12 +61,4 @@ func checkURLUptime(urlInfo *URLData) {
 	}
 
 	fmt.Println("Checked Url : ", urlInfo.URL, " code: ", resp.StatusCode, "   time: ", time.Now())
-}
-
-func (mh *monitorHttp) makeHTTPGetRequest(crawlTimeout int, url string) (*http.Response, error) {
-
-	timeout := time.Duration(crawlTimeout) * time.Second
-	client := httpclient.NewClient(httpclient.WithHTTPTimeout(timeout))
-
-	return client.Get(url, nil)
 }
